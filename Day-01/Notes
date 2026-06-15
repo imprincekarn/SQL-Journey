@@ -1,0 +1,299 @@
+# Day 1 SQL Notes
+
+## SELECT
+
+Show data from a table.
+
+```sql id="ujtk0m"
+SELECT * FROM Employees;
+```
+
+Show specific columns:
+
+```sql id="aqnzho"
+SELECT Name, salary
+FROM Employees;
+```
+
+Alias:
+
+```sql id="4jlwm3"
+SELECT Name AS Employee_Name
+FROM Employees;
+```
+
+---
+
+## DISTINCT
+
+Removes duplicate values.
+
+```sql id="3dk3t9"
+SELECT DISTINCT department
+FROM Employees;
+```
+
+Unique combinations:
+
+```sql id="b4h1ci"
+SELECT DISTINCT department, salary
+FROM Employees;
+```
+
+---
+
+## WHERE
+
+Filters rows.
+
+```sql id="r1ylcf"
+SELECT *
+FROM Employees
+WHERE department='IT';
+```
+
+```sql id="tpgjyz"
+SELECT *
+FROM Employees
+WHERE salary > 50000;
+```
+
+Operators:
+
+```text id="a8efvb"
+=
+>
+<
+>=
+<=
+!=
+<>
+```
+
+---
+
+## AND
+
+Both conditions must be true.
+
+```sql id="trr7qh"
+SELECT *
+FROM Employees
+WHERE department='IT'
+AND salary > 55000;
+```
+
+---
+
+## OR
+
+Any one condition can be true.
+
+```sql id="63iy7k"
+SELECT *
+FROM Employees
+WHERE department='HR'
+OR department='Finance';
+```
+
+---
+
+## IN
+
+Short form of multiple ORs.
+
+```sql id="13ixrx"
+SELECT *
+FROM Employees
+WHERE department IN ('HR','Finance');
+```
+
+---
+
+## BETWEEN
+
+Range search.
+
+```sql id="9d0ocg"
+SELECT *
+FROM Employees
+WHERE salary BETWEEN 45000 AND 55000;
+```
+
+Includes both limits.
+
+Equivalent to:
+
+```sql id="vyn0hf"
+WHERE salary >= 45000
+AND salary <= 55000
+```
+
+---
+
+## ORDER BY
+
+Sort data.
+
+Ascending:
+
+```sql id="st9h08"
+SELECT *
+FROM Employees
+ORDER BY salary ASC;
+```
+
+Descending:
+
+```sql id="k0ef6m"
+SELECT *
+FROM Employees
+ORDER BY salary DESC;
+```
+
+Multiple columns:
+
+```sql id="vzt62g"
+SELECT *
+FROM Employees
+ORDER BY department, salary DESC;
+```
+
+---
+
+## LIMIT
+
+Restricts number of rows returned.
+
+First 2 rows:
+
+```sql id="3kvw42"
+SELECT *
+FROM Employees
+LIMIT 2;
+```
+
+Top 3 highest salaries:
+
+```sql id="61q2y4"
+SELECT *
+FROM Employees
+ORDER BY salary DESC
+LIMIT 3;
+```
+
+---
+
+## OFFSET
+
+Skip rows.
+
+```sql id="sntzdl"
+SELECT *
+FROM Employees
+LIMIT 2 OFFSET 2;
+```
+
+Skip first 2 rows and return next 2.
+
+---
+
+## Most Important Interview Queries
+
+Highest paid employee:
+
+```sql id="njy85m"
+SELECT *
+FROM Employees
+ORDER BY salary DESC
+LIMIT 1;
+```
+
+Top 3 highest paid employees:
+
+```sql id="u4x7d6"
+SELECT *
+FROM Employees
+ORDER BY salary DESC
+LIMIT 3;
+```
+
+Second highest paid employee:
+
+```sql id="mqrf7k"
+SELECT *
+FROM Employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+```
+
+Unique departments:
+
+```sql id="mr03p7"
+SELECT DISTINCT department
+FROM Employees;
+```
+
+IT employees:
+
+```sql id="vwd2x3"
+SELECT *
+FROM Employees
+WHERE department='IT';
+```
+
+---
+
+## Execution Order (Simplified)
+
+```text id="b0ulul"
+FROM
+→ WHERE
+→ SELECT
+→ DISTINCT
+→ ORDER BY
+→ LIMIT
+```
+
+---
+
+## Day 1 Cheat Sheet
+
+```sql id="m43jgm"
+SELECT * FROM table_name;
+
+SELECT col1, col2 FROM table_name;
+
+SELECT DISTINCT col1 FROM table_name;
+
+SELECT * FROM table_name
+WHERE condition;
+
+SELECT * FROM table_name
+WHERE condition1 AND condition2;
+
+SELECT * FROM table_name
+WHERE condition1 OR condition2;
+
+SELECT * FROM table_name
+WHERE col BETWEEN x AND y;
+
+SELECT * FROM table_name
+WHERE col IN (...);
+
+SELECT * FROM table_name
+ORDER BY col ASC;
+
+SELECT * FROM table_name
+ORDER BY col DESC;
+
+SELECT * FROM table_name
+LIMIT n;
+
+SELECT * FROM table_name
+LIMIT n OFFSET m;
+```
+
+**Status:** Day 1 Completed ✅
+**SQL Progress:** Fundamentals Strong ✅
+**90-Day Journey:** 1/90 Days Completed ✅
